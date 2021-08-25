@@ -3,14 +3,14 @@ package service
 import (
 	"net/http"
 
-	"github.com/HPISTechnologies/component-lib/actor"
-	"github.com/HPISTechnologies/component-lib/storage"
-	"github.com/HPISTechnologies/component-lib/streamer"
-	"github.com/HPISTechnologies/generic-hashing-svc/service/workers"
+	"github.com/arcology/component-lib/actor"
+	"github.com/arcology/component-lib/storage"
+	"github.com/arcology/component-lib/streamer"
+	"github.com/arcology/generic-hashing-svc/service/workers"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/spf13/viper"
 
-	"github.com/HPISTechnologies/component-lib/kafka"
+	"github.com/arcology/component-lib/kafka"
 )
 
 type Config struct {

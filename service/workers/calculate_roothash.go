@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"time"
 
-	ethCommon "github.com/HPISTechnologies/3rd-party/eth/common"
-	"github.com/HPISTechnologies/common-lib/types"
-	"github.com/HPISTechnologies/component-lib/actor"
-	"github.com/HPISTechnologies/component-lib/log"
-	"github.com/HPISTechnologies/component-lib/mhasher"
+	ethCommon "github.com/arcology/3rd-party/eth/common"
+	"github.com/arcology/common-lib/types"
+	"github.com/arcology/component-lib/actor"
+	"github.com/arcology/component-lib/log"
+	"github.com/arcology/component-lib/mhasher"
 	"go.uber.org/zap"
 )
 
