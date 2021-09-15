@@ -1,8 +1,8 @@
 package service
 
 import (
-	cmn "github.com/arcology/3rd-party/tm/common"
-	"github.com/arcology/component-lib/log"
+	cmn "github.com/arcology-network/3rd-party/tm/common"
+	"github.com/arcology-network/component-lib/log"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )

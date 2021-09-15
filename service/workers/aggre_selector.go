@@ -1,11 +1,11 @@
 package workers
 
 import (
-	ethCommon "github.com/arcology/3rd-party/eth/common"
-	"github.com/arcology/common-lib/types"
-	"github.com/arcology/component-lib/actor"
-	"github.com/arcology/component-lib/aggregator/aggregator"
-	"github.com/arcology/component-lib/log"
+	ethCommon "github.com/arcology-network/3rd-party/eth/common"
+	"github.com/arcology-network/common-lib/types"
+	"github.com/arcology-network/component-lib/actor"
+	"github.com/arcology-network/component-lib/aggregator/aggregator"
+	"github.com/arcology-network/component-lib/log"
 	"go.uber.org/zap"
 )
 

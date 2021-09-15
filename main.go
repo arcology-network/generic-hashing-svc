@@ -3,8 +3,8 @@ package main
 import (
 	"os"
 
-	tmCli "github.com/arcology/3rd-party/tm/cli"
-	"github.com/arcology/generic-hashing-svc/service"
+	tmCli "github.com/arcology-network/3rd-party/tm/cli"
+	"github.com/arcology-network/generic-hashing-svc/service"
 )
 
 func main() {

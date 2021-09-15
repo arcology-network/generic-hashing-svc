@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run: sudo apt update
       - run: sudo apt install libtbb-dev libcrypto++6
-      - run: go env -w GOPRIVATE=github.com/arcology
+      - run: go env -w GOPRIVATE=github.com/arcology-network
       - run: go build
       - store_artifacts:
           path: generic-hashing-svc
