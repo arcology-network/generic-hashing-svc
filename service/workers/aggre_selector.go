@@ -28,7 +28,7 @@ func (a *AggreSelector) OnStart() {
 func (a *AggreSelector) OnMessageArrived(msgs []*actor.Message) error {
 	for _, v := range msgs {
 		switch v.Name {
-		case actor.MsgClearCommand:
+		case actor.CombinedName(actor.MsgAppHash, actor.MsgReapingCompleted):
 			remainingQuantity := a.aggregator.OnClearInfoReceived()
 			a.AddLog(log.LogLevel_Info, "generic-hashing AggreSelector clear pool", zap.Int("remainingQuantity", remainingQuantity))
 		case actor.MsgInclusive:
@@ -63,5 +63,7 @@ func (a *AggreSelector) SendMsg(SelectedData *[]*interface{}) {
 		}
 		a.AddLog(log.LogLevel_Info, "AggreSelector send selected receipts")
 		a.MsgBroker.Send(actor.MsgSelectedReceipts, &receipts)
+		a.MsgBroker.Send(actor.MsgReapingCompleted, "")
 	}
+
 }

@@ -1,14 +1,13 @@
 package workers
 
 import (
-	"bytes"
 	"time"
 
 	ethCommon "github.com/arcology-network/3rd-party/eth/common"
+	"github.com/arcology-network/common-lib/mhasher"
 	"github.com/arcology-network/common-lib/types"
 	"github.com/arcology-network/component-lib/actor"
 	"github.com/arcology-network/component-lib/log"
-	"github.com/arcology-network/component-lib/mhasher"
 	"go.uber.org/zap"
 )
 
@@ -81,9 +80,9 @@ func (cr *CalculateRoothash) gatherReceipts(inclusiveList *types.InclusiveList, 
 	}
 	roothash := ethCommon.Hash{}
 	if len(datas) > 0 {
-		src := bytes.Join(datas, []byte(""))
-		totallen := len(src)
-		roothashbytes, err := mhasher.BinaryMhasherFromRaw(src, totallen, mhasher.HashType_256)
+		// src := bytes.Join(datas, []byte(""))
+		// totallen := len(src)
+		roothashbytes, err := mhasher.Roothash(datas, mhasher.HashType_256)
 		if err != nil {
 			cr.AddLog(log.LogLevel_Error, "make roothash err ", zap.String("err", err.Error()))
 			return nilroot, 0

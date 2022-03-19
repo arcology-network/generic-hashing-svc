@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/arcology-network/component-lib/actor"
-	"github.com/arcology-network/component-lib/storage"
 	"github.com/arcology-network/component-lib/streamer"
 	"github.com/arcology-network/generic-hashing-svc/service/workers"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
@@ -71,20 +70,23 @@ func (cfg *Config) Start() {
 	kafkaDownloader.Connect(streamer.NewDisjunctions(kafkaDownloader, 100))
 
 	//02-00 Combiner
-	combiner := actor.NewActor(
-		"combiner",
-		broker,
-		[]string{
-			actor.MsgAppHash,
-			actor.MsgReapingCompleted,
-		},
-		[]string{
-			actor.MsgClearCommand,
-		},
-		[]int{1},
-		storage.NewCombiner(cfg.concurrency, cfg.groupid, actor.MsgClearCommand),
-	)
-	combiner.Connect(streamer.NewConjunctions(combiner))
+	/*
+		combiner := actor.NewActor(
+			"combiner",
+			broker,
+			[]string{
+				actor.MsgAppHash,
+				actor.MsgReapingCompleted,
+			},
+			[]string{
+				actor.MsgClearCommand,
+			},
+			[]int{1},
+			storage.NewCombiner(cfg.concurrency, cfg.groupid, actor.MsgClearCommand),
+		)
+		combiner.Connect(streamer.NewConjunctions(combiner))
+	*/
+	actor.Combine(actor.MsgAppHash, actor.MsgReapingCompleted).On(broker)
 
 	//02 aggre
 	aggreSelector := actor.NewActor(
@@ -92,7 +94,8 @@ func (cfg *Config) Start() {
 		broker,
 		[]string{
 			actor.MsgReceiptHashList,
-			actor.MsgClearCommand,
+			actor.CombinedName(actor.MsgAppHash, actor.MsgReapingCompleted),
+			//actor.MsgClearCommand,
 			actor.MsgInclusive},
 		[]string{
 			actor.MsgSelectedReceipts,
